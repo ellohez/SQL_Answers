@@ -22,7 +22,7 @@ SELECT MAX(length) `film` FROM film;
 SELECT COUNT(*) AS 'films_in_2010' 
 	FROM `film` 
     WHERE `release_year` = 2010;
--- To test the above is ACTUALLY zero...
+-- To test the above query is working and the result is ACTUALLY zero...
 SELECT COUNT(*) AS 'films_in_2006' 
 	FROM `film` 
 	WHERE `release_year` = '2006';
