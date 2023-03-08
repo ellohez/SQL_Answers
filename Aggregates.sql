@@ -9,7 +9,7 @@ SELECT * from `actor` WHERE `actor_id` = 107;
 -- What is the average running time of all the films in the database?
 SELECT AVG(`length`) FROM `film`;
 -- What is the average running time of films by category?
-SELECT AVG(`length`) AS 'length', category 
+SELECT AVG(`length`) AS 'avg_length', category 
 	FROM `film_list` 
     GROUP BY `category`;
 -- How many movies have Robots in them?
