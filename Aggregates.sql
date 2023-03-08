@@ -52,3 +52,27 @@ SELECT `last_name`
 	FROM `actor` 
 	GROUP BY `last_name`
 	HAVING COUNT(`last_name`) = 1; 
+    
+-- Which last names appear more than once?
+SELECT 
+    `last_name`, COUNT(`last_name`) AS `count`
+FROM
+    `actor`
+GROUP BY `last_name`
+HAVING `count` > 1; 
+
+-- Retrieve all movies that Fred Costner has appeared in
+SELECT 
+    `f`.`title`
+FROM
+    `film` AS `f`
+WHERE
+    `f`.`film_id` IN (SELECT 
+            `fa`.`film_id`
+        FROM
+            `film_actor` AS `fa`
+                LEFT OUTER JOIN
+            `actor` AS `a` ON `fa`.`actor_id` = `a`.`actor_id`
+        WHERE
+            `a`.`first_name` = 'Fred'
+                AND `a`.`last_name` = 'Costner');
