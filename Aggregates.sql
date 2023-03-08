@@ -61,7 +61,7 @@ FROM
 GROUP BY `last_name`
 HAVING `count` > 1; 
 
--- Retrieve all movies that Fred Costner has appeared in
+-- Retrieve all movies that Fred Costner has appeared in                
 SELECT 
     `f`.`title`
 FROM
@@ -71,8 +71,34 @@ WHERE
             `fa`.`film_id`
         FROM
             `film_actor` AS `fa`
-                LEFT OUTER JOIN
+                INNER JOIN
             `actor` AS `a` ON `fa`.`actor_id` = `a`.`actor_id`
         WHERE
             `a`.`first_name` = 'Fred'
                 AND `a`.`last_name` = 'Costner');
+                
+-- Find out which location has the most copies of
+-- BUCKET BROTHERHOOD
+SELECT 
+	`i`.`store_id`
+FROM
+    `film` AS `f`
+INNER JOIN `inventory` AS `i`
+WHERE
+    `f`.`title` = 'BUCKET BROTHERHOOD'
+GROUP BY `i`.`store_id`;
+
+-- Create a list of categories and the 
+-- number of films for each category
+SELECT 
+    `c`.`category_id`,
+    `c`.`name`,
+    COUNT(`f`.`film_id`) AS `num_films_per_category`
+FROM
+    `category` AS `c`
+        LEFT OUTER JOIN
+    `film_category` AS `f` ON `c`.`category_id` = `f`.`category_id`
+GROUP BY `c`.`category_id`;
+
+-- Create a list of actors and the number
+-- of movies by each actor
