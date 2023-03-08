@@ -32,3 +32,9 @@ SELECT `last_name`, COUNT(`last_name`) AS 'name_count'
 	GROUP BY `last_name`
 	HAVING `name_count`=1; 
 
+-- JH's example- as GROUP BY aggregates by default, if count is not needed for checking
+-- the above could be written as...
+SELECT `last_name`
+	FROM `actor` 
+	GROUP BY `last_name`
+	HAVING COUNT(`last_name`) = 1; 
