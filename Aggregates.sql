@@ -102,3 +102,7 @@ GROUP BY `c`.`category_id`;
 
 -- Create a list of actors and the number
 -- of movies by each actor
+
+-- Is ‘Academy Dinosaur’ available for rent from Store 1? 
+
+-- When is ‘Academy Dinosaur’ due? 
