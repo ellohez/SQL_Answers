@@ -1,23 +1,30 @@
 USE sakila;
 
 -- Which actor has appeared in the most films?
-SELECT actor_id, count(film_id) AS num_films 
-	FROM film_actor 
-    GROUP BY actor_id 
-    ORDER BY num_films DESC;
-SELECT * from `actor` WHERE `actor_id` = 107;
+SELECT * FROM `actor` WHERE `actor_id` = (
+	SELECT `actor_id`
+	FROM `film_actor` 
+    	GROUP BY `actor_id` 
+    	ORDER BY COUNT(`film_id`) DESC 
+    	LIMIT 1
+);
+
 -- What is the average running time of all the films in the database?
 SELECT AVG(`length`) FROM `film`;
+
 -- What is the average running time of films by category?
 SELECT AVG(`length`) AS 'avg_length', category 
 	FROM `film_list` 
     GROUP BY `category`;
+    
 -- How many movies have Robots in them?
 SELECT COUNT(*) FROM `film` 
 WHERE `description` 
 LIKE '%robot%';
+
 -- Find the movie(s) with the longest runtime.
 SELECT MAX(length) `film` FROM film;
+
 -- Count how many movies were released in 2010
 SELECT COUNT(*) AS 'films_in_2010' 
 	FROM `film` 
