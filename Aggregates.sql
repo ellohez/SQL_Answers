@@ -102,6 +102,10 @@ GROUP BY `c`.`category_id`;
 
 -- Create a list of actors and the number
 -- of movies by each actor
+SELECT `a`.`actor_id`, `a`.`first_name`, `a`.`last_name`, COUNT(`film_id`) AS `num_films`
+FROM `actor` AS `a`
+JOIN `film_actor` AS `f` ON `a`.`actor_id` = `f`.`actor_id`
+GROUP BY `a`.`actor_id`
 
 -- Is ‘Academy Dinosaur’ available for rent from Store 1? 
 
